@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 	
 	{% block content %}
+	
 		<h2 class="text-center">Blog Posts</h2>
 		
 		{% include 'partials/messages.html' %}
 
 		{% for post in posts %}
-		<div class="card">
-			<b>{{post.title}}</b> <br>
-			{{post.description}} <br>
-			<!-- {{request.user}} -->
-		</div>
-		<br>
+			<div class="card">
+				<b>{{post.title}}</b> <br>
+				{{post.description}} <br>
+				<!-- {{request.user}} -->
+			</div>
+			<br>
 		{% endfor %}
+
 	{% endblock %}
