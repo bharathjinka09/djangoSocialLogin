@@ -11,7 +11,6 @@ def not_logged_in(request):
     return render(request, 'not_logged_in.html')
 
 
-@login_required(login_url='/not_logged_in')
 def home(request):
     posts = Post.objects.all()[::-1]
     context = {'posts': posts}
