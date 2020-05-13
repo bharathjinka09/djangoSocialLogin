@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bharath Blog</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<style type="text/css">
+		.bg-color{
+			background: skyblue;
+		}
+		button{
+			background: red;
+			border-color: red;
+			color: white;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body class="bg-color">
+	<nav class="navbar navbar-dark bg-dark navbar-toggle">
+  			<a class="navbar-brand" href="/">Bharath Blog</a>
+  			{% if request.user %}
+  			<p style="color: white;">Welcome <b>{{request.user}}</b>
+  			  <a class="btn btn-danger" href="/accounts/logout/">Logout</a></p>		
+  			{% else %}
+  			<a class="navbar-brand float-right" href="/accounts/google/login/?process=login">Login with Google <i class="fa fa-google"></i></a>
+  			{% endif %}
+	</nav>
+	<div class="container">
+
+
+		{% block content %}{% endblock content %}
+
+	</div>
+
+</body>
+</html>
