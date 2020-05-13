@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Post
 from .forms import PostForm
 
@@ -26,6 +27,7 @@ def create(request):
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,'Post Created')
             form = PostForm()
 
             return redirect('/')
