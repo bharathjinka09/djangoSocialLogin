@@ -18,7 +18,7 @@ def home(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(posts_list, 10)
+    paginator = Paginator(posts_list, 5)
 
     try:
         posts = paginator.page(page)

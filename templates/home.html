@@ -7,14 +7,22 @@
 		{% include 'partials/messages.html' %}
 
 		{% for post in posts %}
-			<div class="card container">
-				<b>{{post.title}}</b> <br>
-				{{post.description}} <br>
+			<div class="card border-success container">
+				<b>{{ post.title }}</b> <br>
+				{% if post.description|length < 360 %}
+					{{ post.description }}
+
+				{% else %}
+					{{ post.description|truncatechars:360 }}
+					<a href="{{ post.id }}" class="btn btn-sm btn-info">Read More</a>
+				
+				<br>
+				{% endif %}
 			</div>
 			<br>
+				
 		{% endfor %}
-
- 		<!-- <table class="table table-bordered">
+		<!-- <table class="table table-bordered">
 		  <thead>
 		    <tr>
 		      <th>Title</th>
