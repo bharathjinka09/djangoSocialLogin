@@ -21,8 +21,10 @@
 	<nav class="navbar navbar-dark bg-dark navbar-toggle">
   			<a class="navbar-brand" href="/">Bharath Blog</a>
   			{% if request.user %}
-  			<p style="color: white;">Welcome <b>{{request.user}}</b>
-  			  <a class="btn btn-danger" href="/accounts/logout/">Logout</a></p>		
+  			<p style="color: white;">
+  				Welcome <b>{{request.user}}</b>
+  				<a href="/create" class="btn btn-primary">Create Post</a>
+  			  	<a class="btn btn-danger" href="/accounts/logout/">Logout</a></p>		
   			{% else %}
   			<a class="navbar-brand float-right" href="/accounts/google/login/?process=login">Login with Google <i class="fa fa-google"></i></a>
   			{% endif %}
