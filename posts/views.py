@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from .models import Post
 from .forms import PostForm
 
@@ -12,8 +14,21 @@ def not_logged_in(request):
 
 
 def home(request):
-    posts = Post.objects.all()[::-1]
+    posts_list = Post.objects.all()[::-1]
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(posts_list, 10)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
     context = {'posts': posts}
+
     return render(request, 'home.html', context=context)
 
 
@@ -26,12 +41,12 @@ def create(request):
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'Post Created')
+            messages.success(request, 'Post Created')
             form = PostForm()
 
             return redirect('/')
     else:
-    	form = PostForm()
+        form = PostForm()
 
     context = {'form': form}
     return render(request, 'create.html', context)
