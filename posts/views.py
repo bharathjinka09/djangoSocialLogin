@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.decorators import method_decorator
 
 from .models import Post
 from .forms import PostForm
@@ -58,8 +61,12 @@ def create(request):
 # view single post
 @login_required(login_url='/not_logged_in')
 def post(request, id):
-	posts = Post.objects.filter(id=id)
-	context = {'id': id, 'posts':posts}
+	posts = get_object_or_404(Post, id=id)
+	context = {
+		'id': id, 
+		'title':posts.title, 
+		'description': posts.description
+		}
 	return render(request, 'post.html', context)
 
 @login_required(login_url='/not_logged_in')
@@ -74,3 +81,10 @@ def delete_post(request, id):
 		'object':obj
 	}
 	return render(request, 'delete_post.html', context)
+
+@method_decorator(login_required, name='dispatch')
+class UpdatePostView(SuccessMessageMixin, UpdateView):
+	model = Post
+	form_class = PostForm
+	template_name = 'update_post.html'
+	success_message = "Post updated successfully"

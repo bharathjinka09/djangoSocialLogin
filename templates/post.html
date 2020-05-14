@@ -2,24 +2,20 @@
 
 {% block content %}
 	<h1 class="text-center">Post Detail</h1>
-	{% for post in posts %}
-			<div class="card border-success container">
-				<b>{{ post.title }}</b> <br>
-				
-					{{ post.description }}
-
-					<div class="row">
-						<div class="col-md-6">
-							<button class="btn btn-primary" type="submit">Edit</button>
-						</div><br><br>
-						<div class="col-md-6">
-							<a href="delete/" class="btn btn-danger" type="submit">Delete</a>
-						</div>
-					</div></b> <br>
-			</div>
-			<br>
+		<div class="card border-success container">
+			<b>{{ title }}</b> <br>
 			
-				
-	{% endfor %}
+				{{ description }}
+
+				<div class="row">
+					<div class="col-md-6">
+						<a href="edit/" class="btn btn-primary" type="submit">Edit</a>
+					</div><br><br>
+					<div class="col-md-6">
+						<a href="delete/" class="btn btn-danger" type="submit">Delete</a>
+					</div>
+				</div></b> <br>
+		</div>
+		<br>
 
 {% endblock content %}

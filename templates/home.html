@@ -6,31 +6,35 @@
 		
 		{% include 'partials/messages.html' %}
 
-		{% for post in posts %}
-			<div class="card border-success container">
-				<b style="color: blue;">{{ post.title }} - ({{ post.timestamp }})</b>
-				{% if post.description|length < 360 %}
-					{{ post.description }}
+		{% if posts %}
+			{% for post in posts %}
+				<div class="card border-success container">
+					<b style="color: blue;">{{ post.title }} - ({{ post.timestamp }})</b>
+					{% if post.description|length < 360 %}
+						{{ post.description }}
 
-				{% else %}
-					{{ post.description|truncatechars:360 }}
-					<a href="post/{{post.id}}" class="btn btn-sm btn-info">Read More</a>
+					{% else %}
+						{{ post.description|truncatechars:360 }}
+						<a href="post/{{post.id}}" class="btn btn-sm btn-info">Read More</a>
+					
+					<br>
+					{% endif %}
+					<div class="row">
+						<div class="col-md-6">
+							<a href="post/{{post.id}}/edit/" class="btn btn-primary" type="submit">Edit</a>
+						</div><br><br>
+						<div class="col-md-6">
+							<a href="post/{{post.id}}/delete/" class="btn btn-danger" type="submit">Delete</a>
+						</div>
+					</div></b> <br>
+				</div><br>
 				
 				<br>
-				{% endif %}
-				<div class="row">
-					<div class="col-md-6">
-						<button class="btn btn-primary" type="submit">Edit</button>
-					</div><br><br>
-					<div class="col-md-6">
-						<a href="post/{{post.id}}/delete/" class="btn btn-danger" type="submit">Delete</a>
-					</div>
-				</div></b> <br>
-			</div><br>
-			
-			<br>
-				
-		{% endfor %}
+					
+			{% endfor %}
+		{% else %}
+				<h3>No Blog Posts. Please create one.</h3>
+		{% endif %}
 		<!-- <table class="table table-bordered">
 		  <thead>
 		    <tr>
