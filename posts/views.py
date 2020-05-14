@@ -50,3 +50,9 @@ def create(request):
 
     context = {'form': form}
     return render(request, 'create.html', context)
+
+# view single post
+def post(request, id):
+    posts = Post.objects.filter(id=id)
+    context = {'id': id, 'posts':posts}
+    return render(request, 'post.html', context)

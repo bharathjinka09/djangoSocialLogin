@@ -14,7 +14,7 @@
 
 				{% else %}
 					{{ post.description|truncatechars:360 }}
-					<a href="{{ post.id }}" class="btn btn-sm btn-info">Read More</a>
+					<a href="post/{{post.id}}" class="btn btn-sm btn-info">Read More</a>
 				
 				<br>
 				{% endif %}

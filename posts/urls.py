@@ -6,4 +6,5 @@ urlpatterns = [
     path('accounts/profile/', views.home),
     path('not_logged_in', views.not_logged_in),
     path('create/', views.create),
+    path('post/<int:id>/', views.post),
 ]
