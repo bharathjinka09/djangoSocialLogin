@@ -56,6 +56,7 @@ def create(request):
 	return render(request, 'create.html', context)
 
 # view single post
+@login_required(login_url='/not_logged_in')
 def post(request, id):
 	posts = Post.objects.filter(id=id)
 	context = {'id': id, 'posts':posts}
