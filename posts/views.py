@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -61,3 +61,16 @@ def post(request, id):
 	posts = Post.objects.filter(id=id)
 	context = {'id': id, 'posts':posts}
 	return render(request, 'post.html', context)
+
+@login_required(login_url='/not_logged_in')
+def delete_post(request, id):
+	obj = get_object_or_404(Post, id=id)
+	# POST request
+	if request.method == 'POST':
+		obj.delete()
+		messages.success(request, 'Post Deleted')
+		return redirect('/')
+	context = {
+		'object':obj
+	}
+	return render(request, 'delete_post.html', context)

@@ -8,7 +8,7 @@
 
 		{% for post in posts %}
 			<div class="card border-success container">
-				<b>{{ post.title }} - ({{ post.timestamp }})</b> <br>
+				<b style="color: blue;">{{ post.title }} - ({{ post.timestamp }})</b>
 				{% if post.description|length < 360 %}
 					{{ post.description }}
 
@@ -18,7 +18,16 @@
 				
 				<br>
 				{% endif %}
-			</div>
+				<div class="row">
+					<div class="col-md-6">
+						<button class="btn btn-primary" type="submit">Edit</button>
+					</div><br><br>
+					<div class="col-md-6">
+						<a href="post/{{post.id}}/delete/" class="btn btn-danger" type="submit">Delete</a>
+					</div>
+				</div></b> <br>
+			</div><br>
+			
 			<br>
 				
 		{% endfor %}
