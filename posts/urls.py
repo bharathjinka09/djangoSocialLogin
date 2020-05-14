@@ -6,7 +6,7 @@ urlpatterns = [
     path('accounts/profile/', views.home),
     path('accounts/profile/post/<int:pk>/edit/', views.UpdatePostView.as_view()),
     path('accounts/profile/post/<int:id>/delete/', views.delete_post),
-    path('not_logged_in', views.not_logged_in),
+    path('not_logged_in', views.not_logged_in, name='not_logged_in'),
     path('create/', views.create),
     path('post/<int:id>/', views.post),
     path('post/<int:pk>/edit/', views.UpdatePostView.as_view(), name='update'),
