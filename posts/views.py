@@ -15,14 +15,15 @@ from .forms import PostForm
 def not_logged_in(request):
 	return render(request, 'not_logged_in.html')
 
-@login_required(login_url='/not_logged_in')
+# @login_required(login_url='/not_logged_in')
 def home(request):
-	user = request.user
-	if request.user.is_authenticated:
-		posts_list = Post.objects.filter(author=user).order_by('-timestamp')
-	else:
-		posts_list = Post.objects.all()[::-1]
-	print(posts_list)
+	# user = request.user
+	# if request.user.is_authenticated:
+	# 	posts_list = Post.objects.filter(author=user).order_by('-timestamp')
+	# else:
+	# 	posts_list = Post.objects.all()[::-1]
+	# print(posts_list)
+	posts_list = Post.objects.all()[::-1] 
 	page = request.GET.get('page', 1)
 	paginator = Paginator(posts_list, 5)
 	try:
@@ -32,7 +33,8 @@ def home(request):
 	except EmptyPage:
 		posts = paginator.page(paginator.num_pages)
 
-	context = {'posts': posts, 'user':user, 'page':int(page)}
+	context = {'posts': posts, 'page':int(page)}
+	# context = {'posts': posts, 'user':user, 'page':int(page)}
 
 	return render(request, 'home.html', context=context)
 
