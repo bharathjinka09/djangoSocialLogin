@@ -8,14 +8,16 @@ defusedxml==0.6.0
 distlib==0.3.0
 dj-database-url==0.5.0
 dj-static==0.0.6
-Django==2.2.10
+Django==2.2
 django-allauth==0.41.0
+django-session-timeout==0.1.0
 djongo==1.3.2
 filelock==3.0.12
 gunicorn==20.0.4
 idna==2.9
 importlib-metadata==1.6.0
 oauthlib==3.1.0
+pkg-resources==0.0.0
 psycopg2-binary==2.8.3
 pymongo==3.10.1
 python-dateutil==2.8.1
