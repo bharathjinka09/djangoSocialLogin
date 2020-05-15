@@ -32,7 +32,7 @@ def home(request):
 	except EmptyPage:
 		posts = paginator.page(paginator.num_pages)
 
-	context = {'posts': posts, 'user':user}
+	context = {'posts': posts, 'user':user, 'page':int(page)}
 
 	return render(request, 'home.html', context=context)
 
