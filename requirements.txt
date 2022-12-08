@@ -1,7 +1,7 @@
 appdirs==1.4.4
 asgiref==3.2.7
 bson==0.5.8
-certifi==2020.4.5.1
+certifi==2022.12.7
 chardet==3.0.4
 dataclasses==0.6
 defusedxml==0.6.0
